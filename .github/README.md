@@ -1,4 +1,4 @@
-This is a mod for Single Player Tarkov.
+This is a mod for Single Player Tarkov.  
 https://www.sp-tarkov.com
 
 Allows you to adjust all item weight values by a relative percentage, or individually set item weight values manually by name.
