@@ -3,8 +3,8 @@
     "version": "1.0.0",
     "main": "src/mod.js",
     "license": "MIT",
-    "author": "Dinkadactyl",
-    "akiVersion": "3.2.2",
+    "author": "Refringe",
+    "akiVersion": "3.2.3",
     "scripts": {
         "setup": "npm i",
         "build": "node ./packageBuild.ts"
