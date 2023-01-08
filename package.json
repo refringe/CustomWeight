@@ -1,10 +1,10 @@
 {
     "name": "CustomWeight",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "main": "src/mod.js",
     "license": "MIT",
     "author": "Refringe",
-    "akiVersion": "3.2.4",
+    "akiVersion": "3.4.1",
     "scripts": {
         "setup": "npm i",
         "build": "node ./packageBuild.ts"
