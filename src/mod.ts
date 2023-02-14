@@ -1,27 +1,30 @@
-import { DependencyContainer } from "tsyringe";
+import { IPostDBLoadModAsync } from "@spt-aki/models/external/IPostDBLoadModAsync";
+import { LogBackgroundColor } from "@spt-aki/models/spt/logging/LogBackgroundColor";
+import { LogTextColor } from "@spt-aki/models/spt/logging/LogTextColor";
 import { ILogger } from "@spt-aki/models/spt/utils/ILogger";
-import { IPostDBLoadMod } from "@spt-aki/models/external/IPostDBLoadMod";
 import { DatabaseServer } from "@spt-aki/servers/DatabaseServer";
+import { DependencyContainer } from "tsyringe";
 
-class CustomWeight implements IPostDBLoadMod
+class CustomWeight implements IPostDBLoadModAsync
 {
-    private config = require("../config/config.json");
-
-    public postDBLoad(container: DependencyContainer): void 
+    public async postDBLoadAsync(container: DependencyContainer): Promise<void>
     {
+        // Get the configuration options.
+        const config = await import("../config/config.json");
+        
         // Get the logger from the server container.
         const logger = container.resolve<ILogger>("WinstonLogger");
 
         // Check to see if the mod is enabled.
-        const enabled:boolean = this.config.mod_enabled;
+        const enabled:boolean = config.mod_enabled;
         if (!enabled)
         {
-            logger.info("CustomWeight is disabled in the config file. No changes to item weight will be made.");
+            logger.logWithColor("CustomWeight is disabled in the config file.", LogTextColor.RED, LogBackgroundColor.DEFAULT);
             return;
         }
 
         // Verbose logging?
-        const debug:boolean = this.config.debug;
+        const debug:boolean = config.debug;
 
         // Get database from server.
         const databaseServer = container.resolve<DatabaseServer>("DatabaseServer");
@@ -35,16 +38,16 @@ class CustomWeight implements IPostDBLoadMod
             if (Object.prototype.hasOwnProperty.call(items[item]._props, "Weight"))
             {
                 // Adjust it according to the config percentage.
-                const newWeight:number = this.calculateRelativePercentage(this.config.weight_adjustment, items[item]._props.Weight);
+                const newWeight:number = this.calculateRelativePercentage(config.weight_adjustment, items[item]._props.Weight);
                 items[item]._props.Weight = newWeight;
 
                 if (debug)
                     logger.debug(`CustomWeight: Item "${items[item]._name}" has had weight adjusted to "${newWeight}".`);
 
                 // If overrides are enabled, check to see if this item has an override.
-                if (this.config.enable_overrides)
+                if (config.enable_overrides)
                 {
-                    for (const [overrideName, overrideWeight] of Object.entries(this.config.overrides))
+                    for (const [overrideName, overrideWeight] of Object.entries(config.overrides))
                     {
                         if (overrideName === items[item]._id || overrideName === items[item]._name)
                         {
@@ -58,10 +61,10 @@ class CustomWeight implements IPostDBLoadMod
             }
         }
 
-        logger.info(`CustomWeight: All items have had their weight adjusted by ${(this.config.weight_adjustment > 0 ? "+" : "")}${this.config.weight_adjustment}%.`);
-        if (this.config.enable_overrides)
+        logger.logWithColor(`CustomWeight: All items have had their weight adjusted by ${(config.weight_adjustment > 0 ? "+" : "")}${config.weight_adjustment}%.`, LogTextColor.CYAN, LogBackgroundColor.DEFAULT);
+        if (config.enable_overrides)
         {
-            const overrideCount = Object.keys(this.config.overrides).length;
+            const overrideCount = Object.keys(config.overrides).length;
             if (overrideCount > 0)
             {
                 logger.info(`CustomWeight: ${overrideCount} item${(overrideCount === 1 ? "" : "s")} have had their weight manually set.`);
