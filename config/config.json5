@@ -1,0 +1,30 @@
+{
+    // Enables the use of the mod. [true/false]
+    "enabled": true,
+
+    // Verbose logging. [true/false]
+    "debug": true,
+
+    // The percentage the weight of all values will be adjusted by. [integer]
+    // Example:  50 = 50% increase (20KG changed to 30KG)
+    // Example: -50 = 50% decrease (20KG changed to 10KG)
+    "adjustment": -50,
+
+    // Adjust the weight of all items within a parent category.
+    // These changes will override the `adjustment` value above.
+    "parent_adjustments": {
+        "5485a8684bdc2da71d8b4567": 0, // All ammunition
+        "5c99f98d86f7745c314214b3": 0, // Mechanical Keys
+        "5c164d2286f774194c5e69fa": 0, // Keycards
+        "5448e53e4bdc2d60728b4567": 50, // Backpacks
+    },
+
+    // Adjust the weight of specific items.
+    // The weight value is in KG, not a relative percentage.
+    // These adjustments will override both the `adjustment` and `parent_adjustments` values above.
+    "specific_adjustments": {
+        "item_barter_energy_batterymilitary": 43.2, // The Tank battery will now weight 43.2KG
+    },
+
+    // Use https://db.sp-tarkov.com/search to find item names, item IDs, and parent IDs.
+}
