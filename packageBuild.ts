@@ -31,17 +31,17 @@ const ignoreList = [
     "types/",
     ".git/",
     ".gitea/",
-	".github/",
+    ".github/",
     ".eslintignore",
     ".eslintrc.json",
     ".gitignore",
     ".DS_Store",
-	".nvmrc",
+    ".nvmrc",
     "packageBuild.ts",
     "mod.code-workspace",
     "package-lock.json",
     "tsconfig.json",
-	"CustomWeight.png"
+    "CustomWeight.png"
 ];
 const exclude = glob.sync(`{${ignoreList.join(",")}}`, { realpath: true, dot: true });
 
@@ -70,5 +70,5 @@ zip({
 
     // Now that we're done with the compression we can delete the temporary build directory.
     fs.rmSync(`${__dirname}/${modName}`, { force: true, recursive: true });
-    console.log("Build successful! your zip file has been created and is ready to be uploaded to hub.sp-tarkov.com/files/");
+    console.log("Build successful!");
 });
