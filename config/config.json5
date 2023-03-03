@@ -21,9 +21,10 @@
 
     // Adjust the weight of specific items.
     // The weight value is in KG, not a relative percentage.
+    // You can use either the item name, or the item ID.
     // These adjustments will override both the `adjustment` and `parent_adjustments` values above.
     "specific_adjustments": {
-        "item_barter_energy_batterymilitary": 43.2, // The Tank battery will now weight 43.2KG
+        "item_barter_energy_batterymilitary": 43.2, // The tank battery will now weigh 43.2KG
     },
 
     // Use https://db.sp-tarkov.com/search to find item names, item IDs, and parent IDs.
