@@ -29,7 +29,7 @@
 
         // Adjust the weight of specific items.
         // You can use either the item name, or the item ID.
-        // These adjustments will override both the `adjustment` and `parent_adjustments` values above.
+        // These adjustments will override `adjustment` and `parent_adjustments` values above for the specified items.
         "specific_adjustments": {
             "item_barter_energy_batterymilitary": 43.2, // [float] Tank battery will weigh 43.2KG
         },
