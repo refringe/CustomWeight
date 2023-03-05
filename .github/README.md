@@ -1,12 +1,12 @@
 This is a mod for Single Player Tarkov.  
 https://www.sp-tarkov.com
 
-Allows you to easily adjust the weight of:
+Allows you to easily adjust:
 
- - All items, by a relative percentage
- - Items that belong to a specific parent category, by a relative percentage
- - Individual items, by setting their exact weight
- - Player light and heavy overweight thresholds
+ - Player overweight and critical overweight thresholds
+ - All item weights by a relative percentage
+ - Items that belong to a specific parent category by a relative percentage
+ - Individual items by setting their exact weight in KG
 
 To install:
 
