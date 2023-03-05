@@ -124,67 +124,67 @@ class CustomWeight implements IPostDBLoadModAsync
      */
     private modifyPlayerWeightLimits(weight: any, config: any): void
     {
-        // We're only exposing the light and heavy overweight configuration values to the user. The rest of the weight
-        // values can be automatically calculated based on their relative difference to the light and heavy overweight values.
+        // We're only exposing the overweight and critical overweight configuration values to the user. The rest of the weight
+        // values can be automatically calculated based on their relative difference to the original overweight and critical overweight values.
         // Exposing all of these values in the config file would likely be a bit too much for the average user. We'll see.
         
-        // Save the original light and heavy overweight values.
-        const orignalLightValue = weight.BaseOverweightLimits.x;
-        const orignalHeavyValue = weight.BaseOverweightLimits.y;
+        // Save the original overweight and critical overweight values.
+        const orignalOverweightValue = weight.BaseOverweightLimits.x;
+        const orignalCriticalOverweightValue = weight.BaseOverweightLimits.y;
 
-        // Calculate the new lower walk overweight value by increasing the new light-overweight value by the same percentage difference as the orignal two values.
+        // Calculate the new lower walk overweight value by increasing the new overweight value by the same percentage difference as the orignal two values.
         const originalWalkOverweightLow = weight.WalkOverweightLimits.x;
-        const walkOverweightLowChange = this.calculatePercentageChange(orignalLightValue, weight.WalkOverweightLimits.x);
-        weight.WalkOverweightLimits.x = Math.round(config.player.LightOverweight * (walkOverweightLowChange + 1));
+        const walkOverweightLowChange = this.calculatePercentageChange(orignalOverweightValue, weight.WalkOverweightLimits.x);
+        weight.WalkOverweightLimits.x = Math.round(config.player.overweight * (walkOverweightLowChange + 1));
         
         if (this.debug && weight.WalkOverweightLimits.x !== originalWalkOverweightLow)
-            this.logger.debug(`CustomWeight: Player "WalkOverweightLow" setting adjusted from ${originalWalkOverweightLow}KG to ${weight.WalkOverweightLimits.x}KG, a ${Math.round(walkOverweightLowChange * 100)}% adjustment from the light-overweight value of ${config.player.LightOverweight}KG.`);
+            this.logger.debug(`CustomWeight: Player "WalkOverweightLow" setting adjusted from ${originalWalkOverweightLow}KG to ${weight.WalkOverweightLimits.x}KG, a ${Math.round(walkOverweightLowChange * 100)}% adjustment from the overweight value of ${config.player.overweight}KG.`);
 
-        // Calculate the new high walk overweight value by increasing the new heavy-overweight value by the same percentage difference as the orignal two values.
+        // Calculate the new high walk overweight value by increasing the new critical overweight value by the same percentage difference as the orignal two values.
         const originalWalkOverweightHigh = weight.WalkOverweightLimits.y;
-        const walkOverweightHighChange = this.calculatePercentageChange(orignalHeavyValue, weight.WalkOverweightLimits.y);
-        weight.WalkOverweightLimits.y = Math.round(config.player.HeavyOverweight * (walkOverweightHighChange + 1));
+        const walkOverweightHighChange = this.calculatePercentageChange(orignalCriticalOverweightValue, weight.WalkOverweightLimits.y);
+        weight.WalkOverweightLimits.y = Math.round(config.player.critical_overweight * (walkOverweightHighChange + 1));
 
         if (this.debug && weight.WalkOverweightLimits.y !== originalWalkOverweightHigh)
-            this.logger.debug(`CustomWeight: Player "WalkOverweightHigh" setting adjusted from ${originalWalkOverweightHigh}KG to ${weight.WalkOverweightLimits.y}KG, a ${Math.round(walkOverweightHighChange * 100)}% adjustment from the heavy-overweight value of ${config.player.HeavyOverweight}KG.`);
+            this.logger.debug(`CustomWeight: Player "WalkOverweightHigh" setting adjusted from ${originalWalkOverweightHigh}KG to ${weight.WalkOverweightLimits.y}KG, a ${Math.round(walkOverweightHighChange * 100)}% adjustment from the critical overweight value of ${config.player.critical_overweight}KG.`);
 
-        // Calculate the new low walk speed value by increasing the new light-overweight value by the same percentage difference as the orignal two values.
+        // Calculate the new low walk speed value by increasing the new overweight value by the same percentage difference as the orignal two values.
         const originalWalkSpeedOverweightLow = weight.WalkSpeedOverweightLimits.x;
-        const walkSpeedOverweightLowChange = this.calculatePercentageChange(orignalLightValue, weight.WalkSpeedOverweightLimits.x);
-        weight.WalkSpeedOverweightLimits.x = Math.round(config.player.LightOverweight * (walkSpeedOverweightLowChange + 1));
+        const walkSpeedOverweightLowChange = this.calculatePercentageChange(orignalOverweightValue, weight.WalkSpeedOverweightLimits.x);
+        weight.WalkSpeedOverweightLimits.x = Math.round(config.player.overweight * (walkSpeedOverweightLowChange + 1));
         
         if (this.debug && weight.WalkSpeedOverweightLimits.x !== originalWalkSpeedOverweightLow)
-            this.logger.debug(`CustomWeight: Player "WalkSpeedOverweightLow" setting adjusted from ${originalWalkSpeedOverweightLow}KG to ${weight.WalkSpeedOverweightLimits.x}KG, a ${Math.round(walkSpeedOverweightLowChange * 100)}% adjustment from the light-overweight value of ${config.player.LightOverweight}KG.`);
+            this.logger.debug(`CustomWeight: Player "WalkSpeedOverweightLow" setting adjusted from ${originalWalkSpeedOverweightLow}KG to ${weight.WalkSpeedOverweightLimits.x}KG, a ${Math.round(walkSpeedOverweightLowChange * 100)}% adjustment from the overweight value of ${config.player.overweight}KG.`);
 
-        // Calculate the new high walk speed value by increasing the new heavy-overweight value by the same percentage difference as the orignal two values.
+        // Calculate the new high walk speed value by increasing the new critical overweight value by the same percentage difference as the orignal two values.
         const originalWalkSpeedOverweightHigh = weight.WalkSpeedOverweightLimits.y;
-        const walkSpeedOverweightHighChange = this.calculatePercentageChange(orignalHeavyValue, weight.WalkSpeedOverweightLimits.y);
-        weight.WalkSpeedOverweightLimits.y = Math.round(config.player.HeavyOverweight * (walkSpeedOverweightHighChange + 1));
+        const walkSpeedOverweightHighChange = this.calculatePercentageChange(orignalCriticalOverweightValue, weight.WalkSpeedOverweightLimits.y);
+        weight.WalkSpeedOverweightLimits.y = Math.round(config.player.critical_overweight * (walkSpeedOverweightHighChange + 1));
 
         if (this.debug && weight.WalkSpeedOverweightLimits.y !== originalWalkSpeedOverweightHigh)
-            this.logger.debug(`CustomWeight: Player "WalkSpeedOverweightHigh" setting adjusted from ${originalWalkSpeedOverweightHigh}KG to ${weight.WalkSpeedOverweightLimits.y}KG, a ${Math.round(walkSpeedOverweightHighChange * 100)}% adjustment from the heavy-overweight value of ${config.player.HeavyOverweight}KG.`);
+            this.logger.debug(`CustomWeight: Player "WalkSpeedOverweightHigh" setting adjusted from ${originalWalkSpeedOverweightHigh}KG to ${weight.WalkSpeedOverweightLimits.y}KG, a ${Math.round(walkSpeedOverweightHighChange * 100)}% adjustment from the critical overweight value of ${config.player.critical_overweight}KG.`);
 
-        // Calculate the new high sprint overweight value by increasing the new heavy-overweight value by the same percentage difference as the orignal two values.
+        // Calculate the new high sprint overweight value by increasing the new critical overweight value by the same percentage difference as the orignal two values.
         const originalSprintOverweightHigh = weight.SprintOverweightLimits.y;
-        const sprintOverweightHighChange = this.calculatePercentageChange(orignalHeavyValue, weight.SprintOverweightLimits.y);
-        weight.SprintOverweightLimits.y = Math.round(config.player.HeavyOverweight * (sprintOverweightHighChange + 1));
+        const sprintOverweightHighChange = this.calculatePercentageChange(orignalCriticalOverweightValue, weight.SprintOverweightLimits.y);
+        weight.SprintOverweightLimits.y = Math.round(config.player.critical_overweight * (sprintOverweightHighChange + 1));
 
         if (this.debug && weight.SprintOverweightLimits.y !== originalSprintOverweightHigh)
-            this.logger.debug(`CustomWeight: Player "WalkSpeedOverweightHigh" setting adjusted from ${originalSprintOverweightHigh}KG to ${weight.SprintOverweightLimits.y}KG, a ${Math.round(sprintOverweightHighChange * 100)}% adjustment from the heavy-overweight value of ${config.player.HeavyOverweight}KG.`);
+            this.logger.debug(`CustomWeight: Player "WalkSpeedOverweightHigh" setting adjusted from ${originalSprintOverweightHigh}KG to ${weight.SprintOverweightLimits.y}KG, a ${Math.round(sprintOverweightHighChange * 100)}% adjustment from the critical overweight value of ${config.player.critical_overweight}KG.`);
 
-        // Adjust when the player will be light-overweight (yellow weight numbers).
-        const orignalLightOverweight = weight.BaseOverweightLimits.x;
-        weight.BaseOverweightLimits.x = weight.SprintOverweightLimits.x = config.player.LightOverweight;
+        // Adjust when the player will be overweight (yellow weight numbers).
+        const orignalOverweight = weight.BaseOverweightLimits.x;
+        weight.BaseOverweightLimits.x = weight.SprintOverweightLimits.x = config.player.overweight;
 
-        if (weight.BaseOverweightLimits.x !== orignalLightOverweight)
-            this.logger.logWithColor(`CustomWeight: Player light-overweight threshold has been updated from ${orignalLightOverweight}KG to ${weight.BaseOverweightLimits.x}KG.`, LogTextColor.CYAN, LogBackgroundColor.DEFAULT);
+        if (weight.BaseOverweightLimits.x !== orignalOverweight)
+            this.logger.logWithColor(`CustomWeight: Player overweight threshold has been updated from ${orignalOverweight}KG to ${weight.BaseOverweightLimits.x}KG.`, LogTextColor.CYAN, LogBackgroundColor.DEFAULT);
 
-        // Adjust when the player will be heavy-overweight (red weight numbers).
-        const orignalHeavyOverweight = weight.BaseOverweightLimits.y;
-        weight.BaseOverweightLimits.y = config.player.HeavyOverweight;
+        // Adjust when the player will be critical overweight (red weight numbers).
+        const orignalCriticalOverweight = weight.BaseOverweightLimits.y;
+        weight.BaseOverweightLimits.y = config.player.critical_overweight;
 
-        if (weight.BaseOverweightLimits.y !== orignalHeavyOverweight)
-            this.logger.logWithColor(`CustomWeight: Player heavy-overweight threshold has been updated from ${orignalHeavyOverweight}KG to ${weight.BaseOverweightLimits.y}KG.`, LogTextColor.CYAN, LogBackgroundColor.DEFAULT);
+        if (weight.BaseOverweightLimits.y !== orignalCriticalOverweight)
+            this.logger.logWithColor(`CustomWeight: Player critical overweight threshold has been updated from ${orignalCriticalOverweight}KG to ${weight.BaseOverweightLimits.y}KG.`, LogTextColor.CYAN, LogBackgroundColor.DEFAULT);
     }
 
     /**

@@ -6,9 +6,10 @@
     "debug": false, // [boolean]
 
     // Adjust the weight thresholds for the player.
+    // All other player weight values will automatically scale based on these values.
     "player": {
-        "LightOverweight": 26, // [integer] The weight the player will be light-overweight (yellow number).
-        "HeavyOverweight": 67, // [integer] The weight the player will be heavy-overweight (red number).
+        "overweight": 26, // [integer] The weight the player will be overweight (yellow number).
+        "critical_overweight": 67, // [integer] The weight the player will be critically overweight (red number).
     },
 
     "item": {
