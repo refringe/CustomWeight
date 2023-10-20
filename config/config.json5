@@ -1,39 +1,39 @@
 {
-    // Enables the use of the mod.
-    "enabled": true, // [boolean]
+    general: {
+        enabled: true,
 
-    // Verbose logging.
-    "debug": false, // [boolean]
-
-    // Adjust the weight thresholds for the player.
-    // All other player weight values will automatically scale based on these values.
-    "player": {
-        "overweight": 26, // [integer] The weight the player will be overweight (yellow number).
-        "critical_overweight": 67, // [integer] The weight the player will be critically overweight (red number).
+        // Verbose logging.
+        debug: false,
     },
 
-    "item": {
+    item: {
         // The relative percentage the weight of all items will be adjusted by.
         // Example:  50 = 50% increase (20KG changed to 30KG)
         // Example: -50 = 50% decrease (20KG changed to 10KG)
-        "adjustment": 0, // [integer]
+        adjustment: 0,
+
+        // TIP: For the following, use https://db.sp-tarkov.com/search to find item names, item IDs, and parent IDs.
 
         // Adjust the weight of all items within a parent category by a relative percentage.
         // These changes will override the `adjustment` value above.
-        "parent_adjustments": {
-            "5485a8684bdc2da71d8b4567": 0, // [integer] Ammunition
-            "5c99f98d86f7745c314214b3": 0, // [integer] Mechanical Keys
-            "5c164d2286f774194c5e69fa": 0, // [integer] Keycards
-            "5448e53e4bdc2d60728b4567": 0, // [integer] Backpacks
+        parentAdjustments: {
+            "5485a8684bdc2da71d8b4567": 0, // Ammunition
+            "5c99f98d86f7745c314214b3": 0, // Mechanical Keys
+            "5c164d2286f774194c5e69fa": 0, // Keycards
+            "5448e53e4bdc2d60728b4567": 0, // Backpacks
         },
 
         // Adjust the weight of specific items.
         // You can use either the item name, or the item ID.
         // These adjustments will override `adjustment` and `parent_adjustments` values above for the specified items.
-        "specific_adjustments": {
-            "item_barter_energy_batterymilitary": 43.2, // [float] Tank battery will weigh 43.2KG
+        specificAdjustments: {
+            item_barter_energy_batterymilitary: 20.5, // Tank battery will weigh 43.2 KG
         },
-    },
 
-    // TIP: Use https://db.sp-tarkov.com/search to find item names, item IDs, and parent IDs.
+        // This is a list of items that will be ignored by the plugin; they will not have their default weight adjusted.
+        // You can use either the item name, or the item ID.
+        blacklist: [
+            "5d03794386f77420415576f5", // Tank battery will be ignored
+        ],
+    },
 }

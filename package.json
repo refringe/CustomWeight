@@ -1,24 +1,34 @@
 {
-    "name": "CustomWeight",
-    "version": "1.1.0",
-    "main": "src/mod.js",
+    "name": "custom-weight",
+    "version": "1.2.0",
+    "main": "src/CustomWeight.js",
     "license": "MIT",
     "author": "Refringe",
-    "akiVersion": "~3.5",
+    "akiVersion": "~3.7",
     "scripts": {
         "setup": "npm i",
-        "build": "node ./packageBuild.ts"
+        "postinstall": "node ./postInstall.mjs",
+        "build": "node ./build.mjs",
+        "buildinfo": "node ./build.mjs --verbose"
+    },
+    "dependencies": {
+        "ajv": "^8.12",
+        "ajv-formats": "^2.1.1",
+        "json5": "^2.2"
     },
     "devDependencies": {
-        "@types/node": "16.18.10",
-        "@typescript-eslint/eslint-plugin": "5.46.1",
-        "@typescript-eslint/parser": "5.46.1",
-        "bestzip": "2.2.1",
-        "eslint": "8.30.0",
-        "fs-extra": "11.1.0",
-        "glob": "8.0.3",
-        "json5": "^2.2.3",
-        "tsyringe": "4.7.0",
-        "typescript": "4.9.4"
+        "@types/node": "18.15.0",
+        "@typescript-eslint/eslint-plugin": "6.7.5",
+        "@typescript-eslint/parser": "6.7.5",
+        "archiver": "^6.0",
+        "eslint": "^8.51",
+        "eslint-config-prettier": "^9.0",
+        "eslint-plugin-prettier": "^5.0",
+        "ignore": "^5.2",
+        "os": "^0.1",
+        "prettier": "^3.0",
+        "tsyringe": "4.8.0",
+        "typescript": "5.2.2",
+        "winston": "3.11.0"
     }
 }
