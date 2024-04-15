@@ -6,14 +6,14 @@ import { CustomWeight } from "../CustomWeight";
  */
 export class ItemAdjuster {
     /**
-     * Constructor initializes the camera recoil adjustment process.
+     * Constructor initializes the item weight adjustment process.
      */
     constructor() {
         this.adjustItemWeights();
     }
 
     /**
-     * Main method that orchestrates the camera recoil adjustment.
+     * Main method that orchestrates the item weight adjustment.
      */
     public adjustItemWeights(): void {
         const items = CustomWeight.container.resolve<DatabaseServer>("DatabaseServer").getTables().templates.items;
@@ -149,12 +149,12 @@ export class ItemAdjuster {
         const increase = percentage >= 0;
         const differencePercentage = increase ? percentage : percentage * -1;
         const difference = (differencePercentage / 100) * value;
-        value = increase ? value + difference : value - difference;
+        let adjustedValue = increase ? value + difference : value - difference;
 
         // Round the new value to max 4 decimal places.
-        value = Math.round(value * 10000) / 10000;
+        adjustedValue = Math.round(value * 10000) / 10000;
 
         // If the value is less than 0, return 0.
-        return value > 0 ? value : 0;
+        return adjustedValue > 0 ? adjustedValue : 0;
     }
 }

@@ -17,9 +17,8 @@ export class ConfigServer {
     private relativeConfigPath: string;
     private configPath: string;
     private config: Configuration | unknown | null = null;
-    private isLoaded: boolean = false;
-    private isValid: boolean = false;
-
+    private isLoaded = false;
+    private isValid = false;
     private ajv: Ajv;
     private validate: ValidateFunction;
     private configSchema: JSONSchema7;
@@ -28,7 +27,7 @@ export class ConfigServer {
      * Constructs a new ConfigServer instance.
      * Automatically loads and validates the configuration file specified by the relative path.
      */
-    constructor(relativeConfigPath: string = "../../config/config.json5") {
+    constructor(relativeConfigPath = "../../config/config.json5") {
         this.relativeConfigPath = relativeConfigPath;
         this.configPath = this.buildConfigPath();
 
@@ -82,8 +81,9 @@ export class ConfigServer {
             this.config = null;
             this.isValid = false;
             throw new Error(
-                "CONFIG_VALIDATION_ERROR - Configuration validation failed - " +
-                    this.ajv.errorsText(this.validate.errors)
+                `CONFIG_VALIDATION_ERROR - Configuration validation failed - ${this.ajv.errorsText(
+                    this.validate.errors
+                )}`
             );
         }
 

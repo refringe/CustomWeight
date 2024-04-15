@@ -4,7 +4,7 @@
     "main": "src/CustomWeight.js",
     "license": "MIT",
     "author": "Refringe",
-    "akiVersion": "~3.7",
+    "akiVersion": "~3.8",
     "scripts": {
         "setup": "npm i",
         "postinstall": "node ./postInstall.mjs",
@@ -12,23 +12,23 @@
         "buildinfo": "node ./build.mjs --verbose"
     },
     "dependencies": {
-        "ajv": "^8.12",
-        "ajv-formats": "^2.1.1",
-        "json5": "^2.2"
+        "ajv": "~8.12",
+        "ajv-formats": "~3.0",
+        "json5": "~2.2"
     },
     "devDependencies": {
-        "@types/node": "18.15.0",
-        "@typescript-eslint/eslint-plugin": "6.7.5",
-        "@typescript-eslint/parser": "6.7.5",
-        "archiver": "^6.0",
-        "eslint": "^8.51",
-        "eslint-config-prettier": "^9.0",
-        "eslint-plugin-prettier": "^5.0",
-        "ignore": "^5.2",
-        "os": "^0.1",
-        "prettier": "^3.0",
+        "@types/node": "~20.12",
+        "@typescript-eslint/eslint-plugin": "~7.6",
+        "@typescript-eslint/parser": "~7.6",
+        "archiver": "~7.0",
+        "eslint": "~8.57",
+        "eslint-config-prettier": "~9.1",
+        "eslint-plugin-prettier": "~5.1",
+        "ignore": "~5.3",
+        "os": "~0.1",
+        "prettier": "~3.2",
         "tsyringe": "4.8.0",
-        "typescript": "5.2.2",
-        "winston": "3.11.0"
+        "typescript": "~5.4",
+        "winston": "~3.13"
     }
 }

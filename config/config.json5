@@ -3,7 +3,8 @@
         enabled: true,
 
         // Verbose logging.
-        debug: false,
+        // Currently logs before and after values for each item changed.
+        debug: true,
     },
 
     item: {
