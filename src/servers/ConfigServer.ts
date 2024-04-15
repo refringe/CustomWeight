@@ -1,8 +1,8 @@
 import Ajv, { ValidateFunction } from "ajv";
-import * as fs from "fs";
+import * as fs from "node:fs";
 import { JSONSchema7 } from "json-schema";
 import * as json5 from "json5";
-import { join } from "path";
+import { join } from "node:path";
 import { ConfigSchema } from "../schemas/ConfigSchema";
 import { Configuration } from "../types";
 
