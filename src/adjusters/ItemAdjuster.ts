@@ -152,7 +152,7 @@ export class ItemAdjuster {
         let adjustedValue = increase ? value + difference : value - difference;
 
         // Round the new value to max 4 decimal places.
-        adjustedValue = Math.round(value * 10000) / 10000;
+        adjustedValue = Number((adjustedValue * 10000).toFixed(0)) / 10000;
 
         // If the value is less than 0, return 0.
         return adjustedValue > 0 ? adjustedValue : 0;
