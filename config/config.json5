@@ -4,7 +4,7 @@
 
         // Verbose logging.
         // Currently logs before and after values for each item changed.
-        debug: true,
+        debug: false,
     },
 
     item: {
@@ -13,7 +13,7 @@
         // Example: -50 = 50% decrease (20KG changed to 10KG)
         adjustment: 0,
 
-        // TIP: For the following, use https://db.sp-tarkov.com/search to find item names, item IDs, and parent IDs.
+        // TIP: For the following, use https://db.sp-tarkov.com to find item names, item IDs, and parent IDs.
 
         // Adjust the weight of all items within a parent category by a relative percentage.
         // These changes will override the `adjustment` value above.
@@ -28,7 +28,7 @@
         // You can use either the item name, or the item ID.
         // These adjustments will override `adjustment` and `parent_adjustments` values above for the specified items.
         specificAdjustments: {
-            item_barter_energy_batterymilitary: 20.5, // Tank battery will weigh 43.2 KG
+            item_barter_energy_batterymilitary: 43.2, // Tank battery will weigh 43.2 KG
         },
 
         // This is a list of items that will be ignored by the plugin; they will not have their default weight adjusted.
